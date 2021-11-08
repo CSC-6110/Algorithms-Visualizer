@@ -7,6 +7,8 @@ from algorithms.stoogeSort  import stoogeSort
 from algorithms.strandSort  import strandSort
 from algorithms.oddevenSort import oddevenSort
 from algorithms.exchangeSort import exchangeSort
+from algorithms.iterativemergeSort import iterativemergeSort
+from algorithms.wiggleSort import wiggleSort
 
 
 algorithmsDict = {'insertion'       : insertionSort,
@@ -16,8 +18,8 @@ algorithmsDict = {'insertion'       : insertionSort,
                   'quick'           : quickSort,
                   'counting'        : countingSort,
                   'cocktail'        : cocktailSort,
-                  'cycle'           : cycleSort,
-                  'bogo'            : bogoSort,
+                  # 'cycle'           : cycleSort,
+                  # 'bogo'            : bogoSort,
                   'heap'            : heapSort,
                   'radix'           : radixSort,
                   'shell'           : shellSort,
@@ -32,5 +34,9 @@ algorithmsDict = {'insertion'       : insertionSort,
                   'strand'          : strandSort,
                   'odd-even'        : oddevenSort,
                   'pigeonhole'      : pigeonholeSort,
-                  'exchange'        : exchangeSort}
+                  'exchange'        : exchangeSort,
+                  'iterative-merge' : iterativemergeSort,
+                  'recursive insertion': recursiveInsertionSort,
+                  'wiggle'          : wiggleSort}
+
 

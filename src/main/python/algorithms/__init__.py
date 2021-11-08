@@ -21,6 +21,9 @@ from algorithms.oddevenSort import oddevenSort
 from algorithms.mergeSort import mergeSort
 from algorithms.insertionSort import insertionSort
 from algorithms.radixSort import radixSort
+from algorithms.recursiveInsertionSort import recursiveInsertionSort
+from algorithms.wiggleSort import wiggleSort
+
 
 
 __all__ = [ 
@@ -46,5 +49,7 @@ __all__ = [
     "oddevenSort", 
     "mergeSort", 
     "insertionSort", 
-    "radixSort"
+    "radixSort",
+    "recursiveInsertionSort",
+    "wiggleSort"
 ]
