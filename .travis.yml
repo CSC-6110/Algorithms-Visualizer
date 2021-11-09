@@ -14,15 +14,20 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - echo "Running Sirisha's tests
-         1. insertionSort
-         2. oddevenSort
-         3. pancakeSort
-         4. pigeonholeSort
-         5. mergeSort
-         6. Quick Sort L-R"
+  - echo -e "Running Sirisha's tests \n
+         1. insertionSort \n
+         2. oddevenSort \n
+         3. pancakeSort \n
+         4. pigeonholeSort \n
+         5. mergeSort \n
+         6. Quick Sort L-R \n"
   - pyb -P unittest_module_glob=insertionSort_tests.py
-  - pyb
+  - pyb -P unittest_module_glob=oddevenSort_tests.py
+  - pyb -P unittest_module_glob=pancakeSort_tests.py
+  - pyb -P unittest_module_glob=pigeonholeSort_tests.py
+  - pyb -P unittest_module_glob=mergeSort_tests.py
+  - pyb -P unittest_module_glob=quickSort_LR_tests.py
+  
   
 
 
