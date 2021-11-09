@@ -14,7 +14,7 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - echo 'Running Sirisha's tests' 
+  - echo "Running Sirisha's tests"
   - echo '1. insertionSort'
   - echo '2. oddevenSort'
   - echo '3. pancakeSort'
