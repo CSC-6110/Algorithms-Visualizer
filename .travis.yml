@@ -14,13 +14,14 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - echo "Running Sirisha's tests"
-  - echo '1. insertionSort'
-  - echo '2. oddevenSort'
-  - echo '3. pancakeSort'
-  - echo '4. pigeonholeSort'
-  - echo '5. mergeSort'
-  - echo '6. Quick Sort L-R'
+  - echo "Running Sirisha's tests
+         1. insertionSort
+         2. oddevenSort
+         3. pancakeSort
+         4. pigeonholeSort
+         5. mergeSort
+         6. Quick Sort L-R"
+  - pyb -P unittest_module_glob=insertionSort_tests.py
   - pyb
   
 
