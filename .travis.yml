@@ -14,5 +14,20 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
+  - echo 'Running Sirisha's tests' 
+  - echo '1. insertionSort'
+  - echo '2. oddevenSort'
+  - echo '3. pancakeSort'
+  - echo '4. pigeonholeSort'
+  - echo '5. mergeSort'
+  - echo '6. Quick Sort L-R'
   - pyb
-  - echo 'Sirisha unit tests'
+  
+
+
+
+ 
+ 
+ 
+ 
+ 
