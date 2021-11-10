@@ -1,4 +1,4 @@
-language: python
+  language: python
 python:
   - "3.6"      # current default Python on Travis CI
   - "3.7"
@@ -6,6 +6,7 @@ python:
 # whitelist
 branches:
   only:
+    - sirisha_travisCI
     - Algorithms-Visualizer-dev
     - master
 # command to install dependencies
@@ -13,4 +14,28 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - pyb
+  - echo -e "Running Borjana's tests \n
+         1. quickSort \n
+         2. radixSort \n
+         3. selectionSort \n
+         4. shellSort \n
+         5. stoogeSort \n
+         6. strandSort \n"
+         7. timSort \n"
+  - pyb -P unittest_module_glob=quickSort_tests.py
+  - pyb -P unittest_module_glob=radixSort_tests.py
+  - pyb -P unittest_module_glob=selectionSort_tests.py
+  - pyb -P unittest_module_glob=shellSort_tests.py
+  - pyb -P unittest_module_glob=stoogeSort_tests.py
+  - pyb -P unittest_module_glob=strandSort_tests.py
+  - pyb -P unittest_module_glob=timSort_tests.py
+  
+  
+
+
+
+ 
+ 
+ 
+ 
+ 
