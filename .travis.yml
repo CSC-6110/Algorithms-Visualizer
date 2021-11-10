@@ -1,0 +1,32 @@
+{
+  "language": "python",
+  "os": [
+    "linux"
+  ],
+  "dist": "xenial",
+  "python": [
+    "3.6",
+    "3.7",
+    "3.8"
+  ],
+  "branches": {
+    "only": [
+      "Borjana_TravisCI",
+      "Algorithms-Visualizer-dev",
+      "master"
+    ]
+  },
+  "install": [
+    "pip install -r requirements.txt"
+  ],
+  "script": [
+    
+    "pyb -P unittest_module_glob=quickSort_tests.py",
+    "pyb -P unittest_module_glob=radixSort_tests.py",
+    "pyb -P unittest_module_glob=selectionSort_tests.py",
+    "pyb -P unittest_module_glob=shellSort_tests.py",
+    "pyb -P unittest_module_glob=stoogeSort_tests.py",
+    "pyb -P unittest_module_glob=strandSort_tests.py",
+    "pyb -P unittest_module_glob=timSort_tests.py"
+  ]
+}
