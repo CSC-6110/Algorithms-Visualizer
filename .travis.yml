@@ -13,4 +13,33 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
+  - echo -e "Running Sirisha's tests \n
+         1. insertionSort \n
+         2. oddevenSort \n
+         3. pancakeSort \n
+         4. pigeonholeSort \n
+         5. mergeSort \n
+         6. Quick Sort L-R \n"
+  - echo -e "Running Borjana's tests \n
+         1. Quick sort \n
+         2. Radix Sort \n
+         3. Selection Sort \n
+         4. Shell sort \n
+         5. Stooge Sort \n
+         6. Strand Sort \n
+         7. tim Sort\n"
+  - echo -e "Running Asif's tests \n
+         1. Comb Sort \n
+         2. Counting Sort \n
+         3. Cycle Sort \n
+         4. Exchange Sort \n
+         5. Gnome Sort \n
+         6. Heap Sort \n"
+  - echo -e "Running Abhishek's tests \n
+         1. Bogo Sort \n
+         2. Bitonic Sort \n
+         3. Binary Insertion Sort \n
+         4. Bubble Sort \n
+         5. Bucket Sort \n
+         6. Cocktail Sort \n"
   - pyb
