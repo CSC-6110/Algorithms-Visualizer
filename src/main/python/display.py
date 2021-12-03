@@ -1,6 +1,7 @@
 import pygame
 from math import ceil
 from time import time
+from algs_description import descriptionsDict
 
 # Initialize pygame modules
 pygame.init()
@@ -12,6 +13,7 @@ pygame.display.set_caption('Sorting Algorithms Visualizer')
 
 # Font
 baseFont = pygame.font.SysFont('Arial', 24)
+smallFont = pygame.font.SysFont('Arial', 18)
 # Used Colors
 grey = (100, 100, 100)
 green = (125, 240, 125)
@@ -202,6 +204,49 @@ class DropdownBox(InputBox):
         if not self.isActive:
             self.active_option = -1
 
+
+class DescriptionBox(InputBox):
+    
+
+    def __init__(self, name, rect, font, color=grey):
+        super().__init__(name, color, rect)
+        self.isActive      = False
+        self.font          = font
+        self.options_color = white
+
+    def draw(self):
+        option_text = self.font.render(algorithmBox.get_active_option(), 1, grey)
+        screen.blit(option_text, option_text.get_rect(center=(530, 465)))
+        label = baseFont.render(self.name, True, self.color)
+        screen.blit(label, (480, 440 - 32))
+        pygame.draw.rect(screen, self.color, (460, 440, 140, 50), 3)
+
+        if self.isActive:
+            chunks = descriptionsDict[algorithmBox.get_active_option()].split('\n')
+            n = len(chunks)
+            pygame.draw.rect(screen, white, (460, 440-n*30, 420, n*30), 0)
+            pygame.draw.rect(screen, grey, (460, 440-n*30, 420, n*30), 3) # draw border
+            chunk_dist=15
+            for line in chunks:
+                description_text = smallFont.render(line, 1, grey)
+                screen.blit(description_text, description_text.get_rect(center=(670, 440-n*30 + chunk_dist)))
+                chunk_dist = chunk_dist + 25
+
+    def update(self):
+        mouse_position = pygame.mouse.get_pos()
+        description_text = self.font.render(descriptionsDict[algorithmBox.get_active_option()], 1, grey)
+        
+        if pygame.mouse.get_pressed() != (0, 0, 0):
+            desc_rect = pygame.Rect((460, 440, 140, 50))
+            if desc_rect.collidepoint(mouse_position) and not self.isActive:
+                self.isActive = True
+            elif self.isActive and pygame.Rect((460, 300, 400, 140)).collidepoint(mouse_position):
+                self.isActive = True
+            else:
+                self.isActive = False
+        
+
+
 # END OF MODULE #
 
 
@@ -214,11 +259,12 @@ timer_space_bar   = 0
 
 
 # Input Boxes
-sizeBox      = TextBox('Size', grey, (30, 440, 50, 50), '100')
-delayBox     = SlideBox('Delay', grey, (105, 440, 112, 50))
-algorithmBox = DropdownBox('Algorithm', (242, 440, 140, 50), baseFont)
-playButton  = ButtonBox('images/playButton.png', (390, 440, 50, 50))
-stopButton = ButtonBox('images/stopButton.png', (390, 440, 50, 50))
+sizeBox        = TextBox('Size', grey, (30, 440, 50, 50), '100')
+delayBox       = SlideBox('Delay', grey, (105, 440, 112, 50))
+algorithmBox   = DropdownBox('Algorithm', (242, 440, 140, 50), baseFont)
+playButton     = ButtonBox('images/playButton.png', (390, 440, 50, 50))
+stopButton     = ButtonBox('images/stopButton.png', (390, 440, 50, 50))
+descBox        = DescriptionBox('Description', (460, 440, 140, 50), baseFont)
 
 
 def updateWidgets(event):
@@ -229,13 +275,24 @@ def updateWidgets(event):
         stopButton.update()
     else:
         playButton.update()
-
+    descBox.update()
+    algorithmBox.update()
 
 def drawBars(array, redBar1, redBar2, blueBar1, blueBar2, greenRows = {}, **kwargs):
     '''Draw the bars and control their colors'''
     if numBars != 0:
         bar_width  = 900 / numBars
         ceil_width = ceil(bar_width)
+    
+    # Coordinate Added
+    max_value = 0
+    if len(array)!=0:
+        max_value = max(array)
+        for cord in range(5):
+            y_cord = round(max_value/5) * (cord + 1)
+            coordinate = baseFont.render(str(y_cord), True, grey)
+            screen.blit(coordinate, (15, 400 - y_cord))
+            pygame.draw.line(screen, red, (0, 400 - y_cord + 10), (10, 400 - y_cord + 10))
 
     for num in range(numBars):
         if   num in (redBar1, redBar2)  : color = red
@@ -254,6 +311,8 @@ def drawBottomMenu():
         stopButton.draw()
     else:
         playButton.draw()
+    descBox.draw() 
+    algorithmBox.draw()
 
 
 def draw_rect_alpha(surface, color, rect):
