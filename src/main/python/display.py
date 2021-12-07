@@ -760,6 +760,9 @@ def run_graph():
                             edges.clear()
                         elif(isClicked(7,342,7+algo_button.get_width(),342+algo_button.get_height(),pos[0],pos[1])):
                             running = False
+                            nodes.clear()
+                            node_color.clear()
+                            edges.clear()
                             break
                     elif state == 'add_node':
                         if pos[0]>200 and pos[1]<550:
