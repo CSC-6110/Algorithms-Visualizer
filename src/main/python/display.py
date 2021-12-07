@@ -377,33 +377,33 @@ def drawInterface(array, redBar1, redBar2, blueBar1, blueBar2, **kwargs):
 ################################### graph algorithm
 
 
-SIZE = 30
+SIZE = 20
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 # YELLOW = (255,255,0)
-YELLOW = (139,0,0)
+MAROON = (139,0,0)
 BLUE = (0,0,255)
 
 #screen = pygame.display.set_mode((900,600))
 #pygame.display.set_caption("Graph Algorithm Visualizer")
 
-left_background = pygame.image.load('./Graph/background.png')
-node1 = pygame.image.load('./Graph/r_circle.png')
-node2 = pygame.image.load('./Graph/b_circle.png')
-node3 = pygame.image.load('./Graph/y_circle.png')
-plus = pygame.image.load('./Graph/plus.png')
-add = pygame.image.load('./Graph/add.png')
-cross = pygame.image.load('./Graph/cross.png')
-algo_button = pygame.image.load('./Graph/algo_button.png')
+left_background = pygame.image.load('./images/background.png')
+node1 = pygame.image.load('./images/r_circle.png')
+node2 = pygame.image.load('./images/b_circle.png')
+node3 = pygame.image.load('./images/y_circle.png')
+plus = pygame.image.load('./images/plus.png')
+add = pygame.image.load('./images/add.png')
+cross = pygame.image.load('./images/cross.png')
+algo_button = pygame.image.load('./images/algo_button.png')
 
-button_font = pygame.font.Font('./Graph/roboto.ttf', 20)
-msg_font = pygame.font.Font('./Graph/roboto.ttf', 15)
+button_font = pygame.font.Font('./images/roboto.ttf', 20)
+msg_font = pygame.font.Font('./images/roboto.ttf', 15)
 
 add_node = button_font.render('Add Nodes', True, WHITE)
 add_edge = button_font.render('Add Edges', True, WHITE)
 dfs_button = button_font.render('DFS', True, WHITE) 
 bfs_button = button_font.render('BFS', True, WHITE)
-find_bridges_button = button_font.render('Find Bridges', True, WHITE)
+# find_bridges_button = button_font.render('Find Bridges', True, WHITE)
 clear_button = button_font.render('Clear Screen', True, WHITE)
 sort_button = button_font.render('SORT', True, WHITE) 
 init_button = button_font.render('Initialize', True, WHITE)
@@ -445,7 +445,7 @@ def initialize():
         nodes.append((pos1, pos2))
         node_color.append(color[0])
 
-    max_edges = int(SIZE * (SIZE-1)/2)
+    max_edges = int(SIZE * (SIZE-1)/4)
     min_edges = SIZE-1
     edge_nos = random.randint(min_edges, max_edges)
     curr_edge = 0
@@ -649,7 +649,7 @@ def show_edges():
     for i in range(len(edges)):
             pygame.draw.line(screen,BLACK,(nodes[edges[i][0]][0]+16,nodes[edges[i][0]][1]+16),(nodes[edges[i][1]][0]+16,nodes[edges[i][1]][1]+16),1)
     for i in range(len(yellow_edges)):
-            pygame.draw.line(screen,YELLOW,(nodes[yellow_edges[i][0]][0]+16,nodes[yellow_edges[i][0]][1]+16),(nodes[yellow_edges[i][1]][0]+16,nodes[yellow_edges[i][1]][1]+16),1)
+            pygame.draw.line(screen,MAROON,(nodes[yellow_edges[i][0]][0]+16,nodes[yellow_edges[i][0]][1]+16),(nodes[yellow_edges[i][1]][0]+16,nodes[yellow_edges[i][1]][1]+16),1)
     for i in range(len(blue_edges)):
             pygame.draw.line(screen,BLUE,(nodes[blue_edges[i][0]][0]+16,nodes[blue_edges[i][0]][1]+16),(nodes[blue_edges[i][1]][0]+16,nodes[blue_edges[i][1]][1]+16),2)
 
@@ -663,11 +663,9 @@ def show_buttons():
         screen.blit(algo_button,(7,446))
         screen.blit(bfs_button,(7+algo_button.get_width()/2-20,446+algo_button.get_height()/2-13))
         screen.blit(algo_button,(7,394))
-        screen.blit(find_bridges_button,(7+algo_button.get_width()/2-50,394+algo_button.get_height()/2-13))
+        screen.blit(init_button,(7+algo_button.get_width()/2-40,394+algo_button.get_height()/2-13))
         screen.blit(algo_button,(7,342))
         screen.blit(sort_button,(7+algo_button.get_width()/2-25,342+algo_button.get_height()/2-13))
-        screen.blit(algo_button,(7,290))
-        screen.blit(init_button,(7+algo_button.get_width()/2-40,290+algo_button.get_height()/2-13))
         
 def show_msg():
     msg_box = msg_font.render(msg, True, BLUE);
@@ -752,11 +750,10 @@ def run_graph():
                                 msg = 'Choose source for the Breadth First Search.'
                             else: state = 'start'
                         elif(isClicked(7,394,7+algo_button.get_width(),394+algo_button.get_height(),pos[0],pos[1])):
-                            if len(nodes) != 0:
-                                node_button = cross
-                                state = 'find_bridges'
-                                msg = 'Articution Points: Yellow nodes    Bridges: Blue edges'
-                            else: state = 'start'
+                            nodes.clear()
+                            node_color.clear()
+                            edges.clear()
+                            initialize()
                         elif(isClicked(7,550,7+algo_button.get_width(),550+algo_button.get_height(),pos[0],pos[1])):
                             nodes.clear()
                             node_color.clear()
@@ -767,11 +764,11 @@ def run_graph():
                             node_color.clear()
                             edges.clear()
                             break
-                        elif(isClicked(7,290,7+algo_button.get_width(),290+algo_button.get_height(),pos[0],pos[1])):
-                            nodes.clear()
-                            node_color.clear()
-                            edges.clear()
-                            initialize()
+                        # elif(isClicked(7,290,7+algo_button.get_width(),290+algo_button.get_height(),pos[0],pos[1])):
+                        #     nodes.clear()
+                        #     node_color.clear()
+                        #     edges.clear()
+                        #     initialize()
                     elif state == 'add_node':
                         if pos[0]>200 and pos[1]<550:
                             nodes.append((pos[0]-16,pos[1]-16))
