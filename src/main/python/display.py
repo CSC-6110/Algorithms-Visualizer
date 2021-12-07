@@ -406,6 +406,7 @@ bfs_button = button_font.render('BFS', True, WHITE)
 find_bridges_button = button_font.render('Find Bridges', True, WHITE)
 clear_button = button_font.render('Clear Screen', True, WHITE)
 sort_button = button_font.render('SORT', True, WHITE) 
+init_button = button_font.render('Initialize', True, WHITE)
 msg_box = msg_font.render('', True, BLUE);
 
 node_button = plus
@@ -665,6 +666,8 @@ def show_buttons():
         screen.blit(find_bridges_button,(7+algo_button.get_width()/2-50,394+algo_button.get_height()/2-13))
         screen.blit(algo_button,(7,342))
         screen.blit(sort_button,(7+algo_button.get_width()/2-25,342+algo_button.get_height()/2-13))
+        screen.blit(algo_button,(7,290))
+        screen.blit(init_button,(7+algo_button.get_width()/2-40,290+algo_button.get_height()/2-13))
         
 def show_msg():
     msg_box = msg_font.render(msg, True, BLUE);
@@ -764,6 +767,11 @@ def run_graph():
                             node_color.clear()
                             edges.clear()
                             break
+                        elif(isClicked(7,290,7+algo_button.get_width(),290+algo_button.get_height(),pos[0],pos[1])):
+                            nodes.clear()
+                            node_color.clear()
+                            edges.clear()
+                            initialize()
                     elif state == 'add_node':
                         if pos[0]>200 and pos[1]<550:
                             nodes.append((pos[0]-16,pos[1]-16))
