@@ -404,7 +404,8 @@ add_edge = button_font.render('Add Edges', True, WHITE)
 dfs_button = button_font.render('DFS', True, WHITE) 
 bfs_button = button_font.render('BFS', True, WHITE)
 find_bridges_button = button_font.render('Find Bridges', True, WHITE)
-clear_button = button_font.render('Clear Screen', True, WHITE) 
+clear_button = button_font.render('Clear Screen', True, WHITE)
+sort_button = button_font.render('SORT', True, WHITE) 
 msg_box = msg_font.render('', True, BLUE);
 
 node_button = plus
@@ -662,6 +663,8 @@ def show_buttons():
         screen.blit(bfs_button,(7+algo_button.get_width()/2-20,446+algo_button.get_height()/2-13))
         screen.blit(algo_button,(7,394))
         screen.blit(find_bridges_button,(7+algo_button.get_width()/2-50,394+algo_button.get_height()/2-13))
+        screen.blit(algo_button,(7,342))
+        screen.blit(sort_button,(7+algo_button.get_width()/2-25,342+algo_button.get_height()/2-13))
         
 def show_msg():
     msg_box = msg_font.render(msg, True, BLUE);
@@ -755,6 +758,9 @@ def run_graph():
                             nodes.clear()
                             node_color.clear()
                             edges.clear()
+                        elif(isClicked(7,342,7+algo_button.get_width(),342+algo_button.get_height(),pos[0],pos[1])):
+                            running = False
+                            break
                     elif state == 'add_node':
                         if pos[0]>200 and pos[1]<550:
                             nodes.append((pos[0]-16,pos[1]-16))
@@ -806,5 +812,5 @@ def run_graph():
         pygame.display.update()
         #clock.tick(60)
         
-    pygame.quit()
+    # pygame.quit()
 
